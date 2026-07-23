@@ -3,7 +3,12 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from rocket_flight import Engine, Rocket, Simulation
+from rocket_flight import (
+    Engine,
+    Rocket,
+    Simulation,
+    plot_altitude,
+)
 
 
 def main():
@@ -25,7 +30,10 @@ def main():
 
     simulation = Simulation(rocket)
 
-    simulation.run(5)
+    simulation.run(20)
+
+    plot_altitude(simulation.history)
+
 
 
 if __name__ == "__main__":

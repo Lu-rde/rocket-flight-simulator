@@ -8,12 +8,19 @@ class Simulation:
     def __init__(self, rocket):
         self.rocket = rocket
         self.state = State ()
-
         self.dt = 0.1
+        
+        self.history = {
+            "time": [],
+            "altitude": [],
+            "velocity": [],
+            "acceleration": [],
+        }
+
 
     def net_force(self):
         atmosphere = Atmosphere (self.state.altitude)
-        thrust = self.rocket.engine.thrust
+        thrust = self.thrust()
 
         drag_force=drag (
             atmosphere.density,
@@ -43,6 +50,20 @@ class Simulation:
 
         self.state.time += self.dt
 
+        if self.state.altitude < 0:
+
+            self.state.altitude = 0
+
+            self.state.velocity = 0
+
+        self.history["time"].append(self.state.time)
+
+        self.history["altitude"].append(self.state.altitude)
+
+        self.history["velocity"].append(self.state.velocity)
+
+        self.history["acceleration"].append(self.state.acceleration)
+
     def run(self, duration):
         while self.state.time < duration:
             
@@ -51,3 +72,10 @@ class Simulation:
             self.state.summary()
 
             print("-" * 35)
+
+    def thrust(self):
+
+        if self.state.time <= self.rocket.engine.burn_time:
+            return self.rocket.engine.thrust
+
+        return 0.0

@@ -10,6 +10,7 @@ class Rocket:
             length: float,
             drag_coefficient: float,
             engine: Engine,
+            launch_angle:float = 90.0,
 
     ) -> None:
         self.name = name 
@@ -23,6 +24,8 @@ class Rocket:
         self.drag_coefficient = drag_coefficient
 
         self.engine = engine
+
+        self.launch_angle=launch_angle
 
     @property
     def frontal_area(self) -> float:

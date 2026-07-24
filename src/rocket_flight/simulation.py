@@ -17,6 +17,10 @@ class Simulation:
             "acceleration": [],
             "mass": [],
             "thrust": [],
+            "x": [],
+            "y": [],
+            "vx": [],
+            "vy": [],
         }
 
 
@@ -73,6 +77,12 @@ class Simulation:
         self.history["thrust"].append(
             self.thrust()
         )
+
+        self.history["x"].append(self.state.x)
+        self.history["y"].append(self.state.y)
+
+        self.history["vx"].append(self.state.vx)
+        self.history["vy"].append(self.state.vy)
 
     def run(self, duration):
         while self.state.time < duration:

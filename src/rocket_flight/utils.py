@@ -133,7 +133,38 @@ def plot_thrust(history):
     output = images_dir / "thrust_profile.png"
 
     plt.savefig(output, dpi=300, bbox_inches="tight")
-    
+
+    print(f"Figure saved to: {output}")
+
+    plt.show()
+
+    plt.close()
+
+def plot_trajectory(history):
+
+    plt.figure(figsize=(8,6))
+
+    plt.plot(
+        history["x"],
+        history["y"],
+        linewidth=2,
+    )
+
+    plt.title("Rocket Trajectory")
+
+    plt.xlabel("Horizontal Distance (m)")
+    plt.ylabel("Altitude (m)")
+
+    plt.axis("equal")
+
+    plt.grid(True)
+
+    images_dir = Path(__file__).resolve().parents[2] / "images"
+
+    output = images_dir / "trajectory.png"
+
+    plt.savefig(output, dpi=300, bbox_inches="tight")
+
     print(f"Figure saved to: {output}")
 
     plt.show()

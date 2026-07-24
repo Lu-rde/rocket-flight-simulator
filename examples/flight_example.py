@@ -12,6 +12,7 @@ from rocket_flight import (
     plot_acceleration,
     plot_mass,
     plot_thrust,
+    plot_trajectory,
     export_csv,
 )
 
@@ -48,6 +49,8 @@ def main():
    plot_mass(simulation.history)
 
    plot_thrust(simulation.history)
+
+   plot_trajectory(simulation.history)
 
    export_csv(simulation.history)
 

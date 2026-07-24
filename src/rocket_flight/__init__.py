@@ -7,4 +7,5 @@ from .utils import plot_velocity
 from .utils import plot_acceleration
 from .utils import plot_mass
 from .utils import plot_thrust
+from .utils import plot_trajectory
 from .export import export_csv

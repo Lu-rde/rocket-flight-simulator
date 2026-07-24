@@ -51,6 +51,8 @@ def plot_velocity(history):
 
     plt.savefig(output, dpi=300, bbox_inches="tight")
 
+    print(f"Figure saved to: {output}")
+
     plt.show()
     plt.close()
 
@@ -75,6 +77,65 @@ def plot_acceleration(history):
 
     plt.savefig(output, dpi=300, bbox_inches="tight")
 
+    print(f"Figure saved to: {output}")
+
     plt.show()
     plt.close()
 
+def plot_mass(history):
+
+    plt.figure(figsize=(8, 5))
+
+    plt.plot(
+        history["time"],
+        history["mass"],
+        linewidth=2,
+    )
+
+    plt.title("Rocket Mass")
+
+    plt.xlabel("Time (s)")
+    plt.ylabel("Mass (kg)")
+
+    plt.grid(True)
+
+    images_dir = Path(__file__).resolve().parents[2] / "images"
+
+    output = images_dir / "mass_profile.png"
+
+    plt.savefig(output, dpi=300, bbox_inches="tight")
+
+    print(f"Figure saved to: {output}")
+
+    plt.show()
+
+    plt.close()
+
+def plot_thrust(history):
+
+    plt.figure(figsize=(8,5))
+
+    plt.plot(
+        history["time"],
+        history["thrust"],
+        linewidth=2,
+    )
+
+    plt.title("Engine Thrust")
+
+    plt.xlabel("Time (s)")
+    plt.ylabel("Thrust (N)")
+
+    plt.grid(True)
+
+    images_dir = Path(__file__).resolve().parents[2] / "images"
+
+    output = images_dir / "thrust_profile.png"
+
+    plt.savefig(output, dpi=300, bbox_inches="tight")
+    
+    print(f"Figure saved to: {output}")
+
+    plt.show()
+
+    plt.close()

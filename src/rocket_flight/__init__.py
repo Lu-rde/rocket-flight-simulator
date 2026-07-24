@@ -5,4 +5,6 @@ from .simulation import Simulation
 from .utils import plot_altitude
 from .utils import plot_velocity
 from .utils import plot_acceleration
+from .utils import plot_mass
+from .utils import plot_thrust
 from .export import export_csv

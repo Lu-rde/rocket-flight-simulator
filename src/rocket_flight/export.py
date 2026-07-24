@@ -21,6 +21,8 @@ def export_csv(history):
             "Altitude (m)",
             "Velocity (m/s)",
             "Acceleration (m/s²)",
+            "Mass (Kg)",
+            "Thrust (N)"
         ])
 
         for row in zip(
@@ -28,6 +30,8 @@ def export_csv(history):
             history["altitude"],
             history["velocity"],
             history["acceleration"],
+            history ["mass"],
+            history["thrust"],
         ):
             writer.writerow(row)
 

@@ -15,6 +15,8 @@ class Simulation:
             "altitude": [],
             "velocity": [],
             "acceleration": [],
+            "mass": [],
+            "thrust": [],
         }
 
 
@@ -29,13 +31,13 @@ class Simulation:
             self.rocket.frontal_area,
         )
 
-        weight_force = weight (self.rocket.dry_mass)
+        weight_force = weight(self.current_mass())
         
         return thrust - drag_force - weight_force
 
     def acceleration(self):
 
-        return self.net_force() / self.rocket.dry_mass
+        return self.net_force() / self.current_mass()
 
     def step(self):
         self.state.acceleration = self.acceleration()
@@ -64,6 +66,14 @@ class Simulation:
 
         self.history["acceleration"].append(self.state.acceleration)
 
+        self.history["mass"].append(
+            self.current_mass()
+        )
+
+        self.history["thrust"].append(
+            self.thrust()
+        )
+
     def run(self, duration):
         while self.state.time < duration:
             
@@ -74,11 +84,26 @@ class Simulation:
             print("-" * 35)
 
     def thrust(self):
+        return self.rocket.engine.thrust_at_time(
+            self.state.time
+        )
 
-        if self.state.time <= self.rocket.engine.burn_time:
-            return self.rocket.engine.thrust
+    def current_mass(self) -> float:
+        """
+         Returns the current rocket mass.
+         """
+        if self.state.time >= self.rocket.engine.burn_time:
+            return self.rocket.dry_mass
 
-        return 0.0
+        burned_mass = (
+            self.rocket.engine.mass_flow_rate *
+            self.state.time
+        )
+
+        return (
+            self.rocket.initial_mass -
+            burned_mass
+            )
 
     def summary(self):
 
@@ -102,5 +127,7 @@ class Simulation:
 
         print(
             f"Time to apogee: "
-            "{self.history['time'][index]:.2f} s"
+            f"{self.history['time'][index]:.2f} s"
         )
+
+        print(f"Maximum thrust: {max(self.history['thrust']):.2f} N")

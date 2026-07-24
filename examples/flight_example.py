@@ -10,6 +10,8 @@ from rocket_flight import (
     plot_altitude,
     plot_velocity,
     plot_acceleration,
+    plot_mass,
+    plot_thrust,
     export_csv,
 )
 
@@ -43,8 +45,11 @@ def main():
 
    plot_acceleration(simulation.history)
 
-   export_csv(simulation.history)
+   plot_mass(simulation.history)
 
+   plot_thrust(simulation.history)
+
+   export_csv(simulation.history)
 
 
 if __name__ == "__main__":

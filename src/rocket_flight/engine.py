@@ -22,6 +22,30 @@ class Engine:
         """
         return self.propellant_mass / self.burn_time
 
+    def thrust_at_time(self, time: float) -> float:
+         """
+         Returns the engine thrust at a given time.
+         """
+
+         if time >= self.burn_time:
+              return 0.0
+
+         progress = time / self.burn_time
+
+         if progress < 0.15:
+              return self.thrust * (
+                   0.8 + progress / 0.15 * 0.2
+            )
+
+         if progress < 0.80:
+              return self.thrust
+
+         decay = (
+              (progress - 0.80) / 0.20
+        )
+
+         return self.thrust * (1.0 - decay)
+
     def summary(self):
             print(f"Engine: {self.name}")
             print(f"Thrust: {self.thrust:.1f} N")

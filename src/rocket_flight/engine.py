@@ -4,6 +4,7 @@ class Engine:
             name:str,
             thrust:float,
             burn_time:float,
+            propellant_mass: float,
     ) -> None:
         self.name=name
 
@@ -11,7 +12,19 @@ class Engine:
 
         self.burn_time=burn_time
 
+        self.propellant_mass = propellant_mass
+
+    @property
+
+    def mass_flow_rate(self) -> float:
+        """
+        Propellant consumption rate (kg/s).
+        """
+        return self.propellant_mass / self.burn_time
+
     def summary(self):
-        print(f"Engine: {self.name}")
-        print(f"Thrust: {self.thrust:.1f} N")
-        print(f"Burn time: {self.burn_time:.2f} s")
+            print(f"Engine: {self.name}")
+            print(f"Thrust: {self.thrust:.1f} N")
+            print(f"Burn time: {self.burn_time:.2f} s")
+            print(f"Propellant: {self.propellant_mass:.2f} kg")
+            print(f"Mass flow: {self.mass_flow_rate:.2f} kg/s")

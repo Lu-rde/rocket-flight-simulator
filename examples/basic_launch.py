@@ -6,10 +6,11 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from rocket_flight import Engine, Rocket
 
 def main ():
-    engine=Engine(
+    engine = Engine(
         name="Aerotech K550",
         thrust=550,
         burn_time=2.4,
+        propellant_mass=3.0,
     )
 
     rocket = Rocket(

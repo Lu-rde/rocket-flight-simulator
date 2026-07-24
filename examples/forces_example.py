@@ -12,6 +12,7 @@ def main():
         name="Aerotech K550",
         thrust=550,
         burn_time=2.4,
+        propellant_mass=3.0,
     )
 
     rocket = Rocket(

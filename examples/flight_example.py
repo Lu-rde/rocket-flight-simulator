@@ -16,13 +16,13 @@ from rocket_flight import (
 
 def main():
 
-    engine = Engine(
-        name="Aerotech K550",
-        thrust=550,
-        burn_time=2.4,
+   engine = Engine(
+      name="Aerotech K550",
+      thrust=550,
+      burn_time=2.4,
+      propellant_mass=3.0,
     )
-
-    rocket = Rocket(
+   rocket = Rocket(
         name="Demo Rocket",
         dry_mass=18.5,
         diameter=0.15,
@@ -31,19 +31,19 @@ def main():
         engine=engine,
     )
 
-    simulation = Simulation(rocket)
+   simulation = Simulation(rocket)
 
-    simulation.run(20)
+   simulation.run(20)
 
-    simulation.summary()
+   simulation.summary()
 
-    plot_altitude(simulation.history)
+   plot_altitude(simulation.history)
 
-    plot_velocity(simulation.history)
+   plot_velocity(simulation.history)
 
-    plot_acceleration(simulation.history)
+   plot_acceleration(simulation.history)
 
-    export_csv(simulation.history)
+   export_csv(simulation.history)
 
 
 

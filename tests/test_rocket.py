@@ -35,6 +35,7 @@ def test_frontal_area():
         name="Test",
         thrust=500,
         burn_time=3,
+        propellant_mass=3.0,
     )
 
     rocket=Rocket(

@@ -10,6 +10,7 @@ def test_engine_creation():
         name="Test Engine",
         thrust=500,
         burn_time=3.5,
+        propellant_mass=3.0,
     )
 
     assert engine.name=="Test Engine"

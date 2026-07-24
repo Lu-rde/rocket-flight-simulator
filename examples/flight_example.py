@@ -8,6 +8,9 @@ from rocket_flight import (
     Rocket,
     Simulation,
     plot_altitude,
+    plot_velocity,
+    plot_acceleration,
+    export_csv,
 )
 
 
@@ -32,7 +35,15 @@ def main():
 
     simulation.run(20)
 
+    simulation.summary()
+
     plot_altitude(simulation.history)
+
+    plot_velocity(simulation.history)
+
+    plot_acceleration(simulation.history)
+
+    export_csv(simulation.history)
 
 
 

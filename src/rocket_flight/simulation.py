@@ -79,3 +79,28 @@ class Simulation:
             return self.rocket.engine.thrust
 
         return 0.0
+
+    def summary(self):
+
+        print("\nFlight Summary")
+        print("=" * 35)
+
+        print(f"Maximum altitude: {max(self.history['altitude']):.2f} m")
+
+        print(f"Maximum velocity: {max(self.history['velocity']):.2f} m/s")
+
+        print(
+
+            f"Maximum acceleration: "
+            f"{max(self.history['acceleration']):.2f} m/s²"
+        )
+
+        index = self.history["altitude"].index(
+
+            max(self.history["altitude"])
+        )
+
+        print(
+            f"Time to apogee: "
+            "{self.history['time'][index]:.2f} s"
+        )
